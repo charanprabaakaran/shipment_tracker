@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="{% static 'base.css' %}?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="logo"><a href="{% url 'home' %}">KITO</a></div>
+        <div class="nav-links">
+            <a href="/dashboard/">Dashboard</a>
+            <a href="/track/">Track</a>
+            {% if user.is_authenticated %}
+            <span>{{ user.username }}</span> <!-- Display the logged-in user's name -->
+            <a href="{% url 'login' %}">Logout</a> <!-- Logout link -->
+            {% else %}
+            <a href="{% url 'login' %}">Login</a> <!-- Display Login link if the user is not logged in -->
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Main Content Section (Content of child templates will be inserted here) -->
+    <div class="content">
+        {% block content %}
+        <!-- Page-specific content will go here -->
+        {% endblock %}
+    </div>
+
+</body>
+</html>

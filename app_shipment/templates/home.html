@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% get_media_prefix as MEDIA_PREFIX%}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="{% static 'home.css' %}?v=5">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+   </head>
+<body>
+    <div class="section">
+        <div class="image-container">
+        <img src="https://x23379162.s3.eu-west-1.amazonaws.com/man-working-warehouse.jpg" alt="Sample Image">
+        </div>
+        <div class="text">
+            <h1>Seamless Tracking for Every Shipment!</h1>
+            <p>Effortlessly track your shipments from start to finish. Our intuitive platform provides instant updates, so you can always stay informed about your packages. </p>
+        </div>
+    </div>
+    <section class="card-section">
+        <div class="topic">
+            <h2>Our Services</h2>
+            <p>Explore our range of services designed to make your experience seamless.</p>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <img src="https://x23379162.s3.eu-west-1.amazonaws.com/man-working-warehouse.jpg" alt="Service 1">
+                <div class="card-content">
+                    <h3>Service 1</h3>
+                    <p>Detailed description of Service 1 goes here. Learn more about how this service can help you.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://x23379162.s3.eu-west-1.amazonaws.com/man-working-warehouse.jpg" alt="Service 2">
+                <div class="card-content">
+                    <h3>Service 2</h3>
+                    <p>Detailed description of Service 2 goes here. Learn more about how this service can help you.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://x23379162.s3.eu-west-1.amazonaws.com/man-working-warehouse.jpg" alt="Service 3">
+                <div class="card-content">
+                    <h3>Service 3</h3>
+                    <p>Detailed description of Service 3 goes here. Learn more about how this service can help you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+</body>
+</html>
+{% endblock %}
+
+

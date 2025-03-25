@@ -1,0 +1,199 @@
+/* Google Fonts Import Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background-color: #F8FAFC;
+}
+
+/* Text Styling */
+.text {
+  max-width: 50%;
+  margin-right: 30px;
+  opacity: 0; /* Start hidden for animation */
+  transform: translateY(30px); /* Start below the screen */
+  animation: fadeInUp 1s forwards 0.5s; /* Animation: fade in and slide up */
+}
+
+.text h1 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+}
+
+.text p {
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* Image Styling */
+.image-container {
+  max-width: 40%;
+  opacity: 0; /* Start hidden for animation */
+  transform: translateX(100px); /* Start off the screen to the right */
+  animation: slideIn 1s forwards 0.7s; /* Animation: slide in */
+}
+
+.image-container img {
+  width: 60%;
+  height: 60%;
+  border-radius: 40px; /* Rounded corners for the image */
+  margin-left: 35%;
+  transition: transform 0.5s ease;
+  transform: scale(0.9); /* Start with a slightly smaller size */
+}
+
+/* Container for the entire section */
+.card-section {
+    padding: 50px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Topic Section Styling */
+.topic h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.topic p {
+    font-size: 1.2em;
+    color: #777;
+}
+
+/* Card Container */
+.cards {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    margin: 40px;
+    gap: 20px;
+}
+
+/* Individual Card Styling */
+.card {
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    border-radius: 30px; /* Rounded corners to give it a phone shape */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+}
+
+/* Card Image Styling */
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Card Content Styling */
+.card-content {
+    padding: 20px;
+}
+
+.card h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 1em;
+    color: #555;
+}
+
+/* Hover Effect for Cards */
+/* .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+} */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .topic h2 {
+        font-size: 2em;
+    }
+
+    .topic p {
+        font-size: 1.1em;
+    }
+}
+
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Slide to original position */
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0); /* Slide to original position */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-section {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .search-bar {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .search-btn {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .results-table th, .results-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .logo a {
+    font-size: 24px;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+}
