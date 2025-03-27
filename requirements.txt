@@ -6,12 +6,12 @@ cement==2.10.14
 certifi==2025.1.31
 charset-normalizer==3.4.1
 colorama==0.4.6
-Django==5.1.7
+Django
 django-storages==1.14.5
 gunicorn==23.0.0
 idna==3.10
 jmespath==1.0.1
-mysqlclient==2.2.7
+mysqlclient
 packaging==24.2
 pathspec==0.10.1
 python-dateutil==2.9.0.post0
