@@ -10,7 +10,7 @@ Django==4.2.20
 django-storages==1.14.5
 idna==3.10
 jmespath==1.0.1
-mysqlclient
+mysqlclient==2.2.7
 pathspec==0.10.1
 python-dateutil==2.9.0.post0
 PyYAML==6.0.2
