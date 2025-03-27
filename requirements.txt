@@ -1,4 +1,4 @@
 Django==5.1.7
-pymysql
+mysql-devel
 django-storages
 boto3
