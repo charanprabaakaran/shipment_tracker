@@ -1,2 +1,2 @@
-Django
-mysqlclient
+Django==5.1.7
+pymysql
