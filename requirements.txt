@@ -1,2 +1,4 @@
 Django==5.1.7
 pymysql
+django-storages
+boto3
