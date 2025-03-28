@@ -86,16 +86,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '/media')
 
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.mysql',  # MySQL database engine                                  
-        'NAME': 'x23379162',          # Database name you created in RDS
-        'USER': 'admin',      # Master username for RDS
-        'PASSWORD': 'charankito123',  # Master password for RDS
-        'HOST': 'x23379162.chwlezgyi7rm.eu-west-1.rds.amazonaws.com',           # RDS endpoint (e.g., tradehub-db.xxxxxx.us-east-1.rds.amazonaws.com)
-        'PORT': '3306',                        # Default MySQL port
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # Optional: Ensures strict SQL mode
-        },
-}}
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'charan123',
+        'HOST': 'database-6.chwlezgyi7rm.eu-west-1.rds.amazonaws.com',  # or your database host
+        'PORT': '5432',       # PostgreSQL port
+    }
+}
+
 
 
 
