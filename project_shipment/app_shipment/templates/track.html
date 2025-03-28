@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% get_media_prefix as MEDIA_PREFIX%}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="{% static 'track.css' %}?v=3">
+  </head>
+<body>
+    
+    <!-- Search Form Section -->
+    <form method="GET" action="{% url 'track' %}">
+        <div class="search-section">
+            <div class="slogan">Find What You Need Instantly</div>
+            <input type="text" class="search-bar" placeholder="Search..." name="query">
+            <button class="search-btn" type="submit">
+                <i class="fa fa-search"></i> Search
+            </button>
+            
+            <!-- Display Results in a Table -->
+            <div id="search-results">
+                {% if query %}
+                    {% if results %}
+                        <table class="results-table">
+                            <thead>
+                                <tr>
+                                    <th>Tracking Number</th>
+                                    <th>Status</th>
+                                    <th>Comments</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for shipmentStatus in results %}
+                                <tr>
+                                    <td>{{ shipmentStatus.tracking_number.tracking_number }}</td>
+                                    <td>{{ shipmentStatus.package_status }}</td>
+                                    <td>{{ shipmentStatus.Comments }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p class="no-results">No results found</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </form>
+    
+    <!-- Login Link -->
+    <!-- <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p> -->
+</body>
+</html>
+{% endblock %}

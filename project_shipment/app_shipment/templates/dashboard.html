@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% get_media_prefix as MEDIA_PREFIX%}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}?v=4">
+  </head>
+<body>
+    <div class="main">
+        <div class="dashboard">Dashboard</div>
+
+        <div class="search-container">
+            <form method="GET" action="{% url 'dashboard' %}">
+                <input type="text" class="search-bar" name="search" placeholder="Search by Tracking Number" value="{{ search_query }}">
+                <button class="search-btn" type="submit">Search</button>
+            </form>
+        </div>
+
+        {% if shipments %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tracking Number</th>
+                        <th>Destination Address</th>
+                        <th>Current Status</th>
+                        <th>Estimated Delivery</th>
+                        <th>Ordered On</th>
+                        <th>Shipped Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for shipment in shipments %}
+                        <tr>
+                            <td>{{ shipment.tracking_number }}</td>
+                            <td>{{ shipment.destination_address }}</td>
+                            <td>{{ shipment.current_status }}</td>
+                            <td>{{ shipment.estimated_delivery }}</td>
+                            <td>{{ shipment.ordered_on }}</td>
+                            <td>{{ shipment.shipped_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You are not authorized to view the shipments data.</p>
+        {% endif %}
+
+    {% if user.is_superuser %}
+        <!-- Cards Section -->
+    <div class="card-container">
+            <a href="/changeStatus/">
+                <div class="card">
+                <h2 class="card-title">Change Status</h2>
+                <!-- <p class="card-content">This is the content for the first card.</p> -->
+                </div>
+            </a>
+            <a href="/some-link">
+                <div class="card">
+                <h2 class="card-title">Change Roles</h2>
+                <!-- <p class="card-content">This is the content for the second card.</p> -->
+                </div>
+            </a>
+    </div>
+    {% endif %}
+
+    </div>
+        
+</body>
+</html>
+{% endblock %}

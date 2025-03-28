@@ -1,0 +1,152 @@
+.search-section {
+    /* margin-top: 40px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 30vh 0;
+    background-color: #f4f4f4;
+}
+.slogan {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+.search-bar {
+    width: 500px;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    outline: none;
+    font-size: 18px;
+}
+
+.search-btn {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Search Icon */
+.search-btn i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* Hover Effect */
+.search-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.results-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.results-table th, .results-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.results-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.results-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background-color: white;
+}
+
+.text {
+    max-width: 50%;
+    margin-right: 30px;
+}
+
+.text h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.text p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.image-container {
+    max-width: 40%;
+}
+
+.image-container img {
+    width: 50%;
+    height: 50%;
+    border-radius: 40px; /* Rounded corners for the image */
+    margin-left: 40%;
+}
+
+/* Table Styling */
+.results-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.results-table th, .results-table td {
+    padding: 14px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.results-table th {
+    background: #007bff;
+    color: white;
+    font-weight: 600;
+}
+
+.results-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.results-table tr:hover {
+    background: #f1f1f1;
+}
+
+/* No Results Message */
+.no-results {
+    color: red;
+    font-size: 18px;
+    margin-top: 20px;
+}

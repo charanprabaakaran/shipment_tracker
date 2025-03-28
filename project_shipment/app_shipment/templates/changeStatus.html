@@ -1,0 +1,152 @@
+{% load static %}
+{% get_media_prefix as MEDIA_PREFIX %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" href="{% static 'changeStatus.css' %}?v=2">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="{% url 'home' %}">KITO</a></div>
+        <div class="nav-links">
+            <a href="/dashboard/">Dashboard</a>
+            <a href="/track/">Track</a>
+            {% if user.is_authenticated %}
+            <span>{{ user.username }}</span> <!-- Display the logged-in user's name -->
+            <a href="{% url 'logout' %}">Logout</a> <!-- Logout link -->
+        {% else %}
+            <a href="{% url 'login' %}">Login</a> <!-- Display Login link if the user is not logged in -->
+        {% endif %}
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="dashboard">Change Status</div>
+    
+        <div class="search-container">
+            <form method="GET" action="{% url 'changeStatus' %}">
+                <input type="text" class="search-bar" name="search" placeholder="Search by Tracking Number" value="{{ search_query }}">
+                <button class="search-btn" type="submit">Search</button>
+            </form>
+        </div>
+    
+        {% if shipments %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tracking Number</th>
+                        <th>Destination Address</th>
+                        <th>Current Status</th>
+                        <th>Estimated Delivery</th>
+                        <th>Ordered On</th>
+                        <th>Shipped Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for shipment in shipments %}
+                    <tr>
+                        <td>{{ shipment.tracking_number }}</td>
+                        <td>{{ shipment.destination_address }}</td>
+                        <td>
+                            <!-- Status displayed as plain text by default -->
+                            <span class="status-text">{{ shipment.current_status }}</span>
+            
+                            <!-- Hidden dropdown by default -->
+                            <select class="status-dropdown" data-shipment-id="{{ shipment.id }}" style="display: none;">
+                                {% for status in statuses %}
+                                    <option value="{{ status }}" {% if shipment.current_status == status %}selected{% endif %}>
+                                        {{ status }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>{{ shipment.estimated_delivery }}</td>
+                        <td>{{ shipment.ordered_on }}</td>
+                        <td>{{ shipment.shipped_date }}</td>
+                        <td>
+                            <button class="edit-btn">Edit</button>
+                            <button class="save-btn" data-shipment-id="{{ shipment.id }}" style="display: none;">Save</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+   
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+    function getCSRFToken() {
+        return document.querySelector("[name=csrfmiddlewaretoken]")?.value || "{{ csrf_token }}";
+    }
+
+    document.querySelectorAll(".edit-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            let row = this.closest("tr");
+            let statusText = row.querySelector(".status-text");
+            let dropdown = row.querySelector(".status-dropdown");
+            let saveButton = row.querySelector(".save-btn");
+
+            // Hide text, show dropdown
+            statusText.style.display = "none";
+            dropdown.style.display = "inline";
+            dropdown.disabled = false;
+
+            // Hide edit button, show save button
+            this.style.display = "none";
+            saveButton.style.display = "inline";
+        });
+    });
+
+    document.querySelectorAll(".save-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            let row = this.closest("tr");
+            let statusText = row.querySelector(".status-text");
+            let dropdown = row.querySelector(".status-dropdown");
+            let shipmentId = this.getAttribute("data-shipment-id");
+            let newStatus = dropdown.value;
+
+            console.log(`Updating shipment ${shipmentId} to status: ${newStatus}`);
+
+            fetch(`/update-status/${shipmentId}/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": getCSRFToken()
+                },
+                body: JSON.stringify({ status: newStatus })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log(`Shipment ${shipmentId} updated successfully.`);
+                    
+                    // Update status text and UI
+                    statusText.textContent = newStatus;
+                    statusText.style.display = "inline";
+                    dropdown.style.display = "none";
+
+                    // Hide save button, show edit button
+                    button.style.display = "none";
+                    row.querySelector(".edit-btn").style.display = "inline";
+                } else {
+                    alert("Error updating status: " + (data.error || "Unknown error"));
+                }
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+                alert("Failed to update status.");
+            });
+        });
+    });
+});
+
+        </script>
+    {% else %}
+        <p>You are not authorized to view the shipments data.</p>
+    {% endif %}
+</body>
+</html>
